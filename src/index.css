@@ -3,23 +3,41 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { @apply bg-cloud text-midnight antialiased font-sans; }
+body {
+  @apply bg-cloud font-sans text-midnight antialiased;
+  background-image: radial-gradient(rgba(17, 24, 39, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-tap-highlight-color: transparent;
+}
 
 @layer components {
-  .container-x { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition active:scale-95; }
-  .btn-primary { @apply btn bg-midnight text-white hover:bg-black; }
-  .btn-mint { @apply btn bg-mint text-midnight hover:bg-mint-deep; }
-  .btn-ghost { @apply btn border border-midnight/15 bg-white text-midnight hover:bg-midnight/5; }
-  .card { @apply rounded-3xl border border-midnight/5 bg-white p-6 shadow-soft; }
-  .label { @apply mb-1.5 block text-sm font-semibold; }
-  .input { @apply w-full rounded-xl border border-midnight/15 bg-white px-4 py-3 text-base outline-none sm:text-sm transition focus:border-mint-dark focus:ring-4 focus:ring-mint/50; }
-  .eyebrow { @apply text-xs font-bold uppercase tracking-widest text-mint-dark; }
+  /* full-width page frame: generous on big screens, snug on phones */
+  .container-x { @apply mx-auto w-full max-w-[1480px] px-4 sm:px-8 lg:px-14; }
+
+  /* sticker buttons */
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-midnight px-6 py-3 text-sm font-extrabold shadow-pop-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-pop active:translate-x-[3px] active:translate-y-[3px] active:shadow-none; }
+  .btn-primary { @apply btn bg-midnight text-white; }
+  .btn-mint { @apply btn bg-mint text-midnight; }
+  .btn-ghost { @apply btn bg-white text-midnight; }
+  .btn-lg { @apply !px-8 !py-4 text-base; }
+
+  /* sticker cards */
+  .card { @apply rounded-3xl border-2 border-midnight bg-white p-6 shadow-pop; }
+  .tile { @apply rounded-3xl border-2 border-midnight p-5 shadow-pop-sm; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border-2 border-midnight bg-white px-3 py-1 text-xs font-extrabold; }
+
+  .label { @apply mb-1.5 block text-sm font-bold; }
+  .input { @apply w-full rounded-2xl border-2 border-midnight bg-white px-4 py-3 text-base outline-none transition focus:bg-mint/30 focus:shadow-pop-sm sm:text-sm; }
+  .eyebrow { @apply inline-block rounded-full border-2 border-midnight bg-butter px-3 py-1 text-xs font-extrabold uppercase tracking-wider; }
+  .hl { @apply rounded-xl bg-mint px-2 box-decoration-clone; }
 }
 
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .page-in { animation: pageIn .35s ease-out both; }
 @keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .page-in { animation: none; } html { scroll-behavior: auto; } }
-body { -webkit-tap-highlight-color: transparent; }
+@media (prefers-reduced-motion: reduce) {
+  .page-in { animation: none; }
+  html { scroll-behavior: auto; }
+  .animate-marquee, .animate-floaty { animation: none !important; }
+}

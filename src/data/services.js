@@ -1,10 +1,14 @@
 // Prices are launch/test prices — change freely.
+// `tone` = card colour (Tailwind bg class) used across the site.
 export const SERVICES = [
   {
     id: 'fresher-resume',
     emoji: '🎓',
+    tone: 'bg-mint',
     name: 'Fresher Resume Creation',
+    short: 'Fresher Resume',
     price: '₹199 – ₹299',
+    from: '₹199',
     delivery: '1–2 days',
     blurb: 'A clean, ATS-friendly resume built from scratch from your details.',
     includes: [
@@ -19,8 +23,11 @@ export const SERVICES = [
   {
     id: 'experienced-resume',
     emoji: '💼',
+    tone: 'bg-butter',
     name: 'Experienced Resume Update',
+    short: 'Experienced Update',
     price: '₹299 – ₹499',
+    from: '₹299',
     delivery: '1–3 days',
     blurb: 'Your existing resume, sharpened — stronger bullets, clearer achievements.',
     includes: [
@@ -35,8 +42,11 @@ export const SERVICES = [
   {
     id: 'interview-kit',
     emoji: '🎯',
+    tone: 'bg-lilac',
     name: 'Interview Preparation Kit',
+    short: 'Interview Kit',
     price: '₹99 – ₹199',
+    from: '₹99',
     delivery: '1–2 days',
     blurb: 'Role, skill & company focused questions with explanations and HR prep.',
     includes: [
@@ -51,8 +61,11 @@ export const SERVICES = [
   {
     id: 'combo',
     emoji: '🚀',
+    tone: 'bg-peach',
     name: 'Resume + Interview Combo',
+    short: 'Resume + Kit Combo',
     price: '₹399 – ₹599',
+    from: '₹399',
     delivery: '2–4 days',
     blurb: 'Resume creation/update plus a role-specific interview kit — best value.',
     includes: [

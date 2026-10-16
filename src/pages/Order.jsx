@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import PageHead from '../components/PageHead'
 import { SERVICES, getService } from '../data/services'
 import { SITE, waLink, mailLink } from '../config'
 
@@ -97,10 +98,10 @@ export default function Order() {
 
   if (sent) {
     return (
-      <div className="container-x max-w-xl py-20 text-center">
-        <div className="text-6xl">🎉</div>
+      <div className="container-x max-w-2xl py-16 text-center md:py-24">
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-midnight bg-butter text-5xl shadow-pop">🎉</div>
         <h1 className="mt-4 text-3xl font-extrabold">Request ready — just hit send!</h1>
-        <p className="mt-3 text-midnight/70">
+        <p className="mt-3 font-medium text-midnight/70">
           Your message opened in WhatsApp / your mail app. Press <strong>Send</strong> there to complete the request. I will reply with
           scope, price and delivery time. {SITE.paymentNote}
         </p>
@@ -114,27 +115,30 @@ export default function Order() {
   }
 
   return (
-    <div className="container-x max-w-3xl py-10 sm:py-14">
-      <p className="eyebrow">Order request</p>
-      <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Tell me what you need</h1>
-      <p className="mt-3 text-midnight/70">
-        Takes 2 minutes. This form doesn't store anything — it prepares a message you send on WhatsApp or email.
-      </p>
+    <div className="container-x pt-6 md:pt-10">
+      <PageHead
+        eyebrow="Order request"
+        title="Tell me what you need."
+        sub="Takes 2 minutes. This form doesn't store anything — it prepares a message you send on WhatsApp or email."
+        emoji="📝"
+        tone="bg-mint"
+      />
 
-      <form className="card mt-8 space-y-6 !p-6 sm:!p-8" noValidate onSubmit={submit('wa')}>
+      <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_24rem]">
+      <form className="card space-y-6 !p-5 sm:!p-8" noValidate onSubmit={submit('wa')}>
         <div>
           <span className="label">1. Choose a service</span>
           <div className="grid gap-3 sm:grid-cols-2">
             {SERVICES.map((s) => (
               <label
                 key={s.id}
-                className={`cursor-pointer rounded-2xl border p-4 transition ${
-                  f.service === s.id ? 'border-mint-dark bg-mint/30' : 'border-midnight/10 hover:bg-midnight/5'
+                className={`cursor-pointer rounded-2xl border-2 border-midnight p-4 transition ${
+                  f.service === s.id ? `${s.tone} shadow-pop-sm` : 'bg-white hover:bg-midnight/5'
                 }`}
               >
                 <input type="radio" name="service" className="sr-only" checked={f.service === s.id} onChange={() => { setF((p) => ({ ...p, service: s.id })); setErrors((p) => ({ ...p, service: undefined })) }} />
                 <div className="font-extrabold">{s.emoji} {s.name}</div>
-                <div className="text-sm text-midnight/60">{s.price}</div>
+                <div className="text-sm font-semibold text-midnight/65">{s.price}</div>
               </label>
             ))}
           </div>
@@ -191,13 +195,13 @@ export default function Order() {
           <textarea id="notes" rows={3} className="input" value={f.notes} onChange={set('notes')} placeholder="Projects, achievements, job link, special requests…" />
         </div>
 
-        <div className="rounded-2xl bg-mint/30 p-4 text-sm">
+        <div className="rounded-2xl border-2 border-dashed border-midnight bg-butter/60 p-4 text-sm font-medium">
           📎 {needsResume ? <strong>Your existing resume is needed.</strong> : 'If you have an existing resume,'} send the file on WhatsApp / email after this
           message. Files are never uploaded to this website.
         </div>
 
         <label className="flex items-start gap-3 text-sm">
-          <input type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={f.consent} onChange={set('consent')} />
+          <input type="checkbox" className="mt-1 h-5 w-5 accent-emerald-600" checked={f.consent} onChange={set('consent')} />
           <span>
             I understand work starts after payment is confirmed, and I agree to the <Link to="/privacy" className="font-bold underline">privacy policy</Link>. ATS-friendly and
             interview kits do not guarantee shortlisting or specific questions.
@@ -211,6 +215,34 @@ export default function Order() {
           <button type="button" className="btn-ghost" onClick={copy}>{copied ? 'Copied ✓' : 'Copy message'}</button>
         </div>
       </form>
+
+      <aside className="space-y-5 lg:sticky lg:top-28">
+        <div className={`card ${getService(f.service)?.tone || '!bg-white'}`}>
+          <p className="text-xs font-extrabold uppercase tracking-wider text-midnight/60">Your pick</p>
+          {getService(f.service) ? (
+            <>
+              <h3 className="mt-2 text-xl font-extrabold">{getService(f.service).emoji} {getService(f.service).name}</h3>
+              <p className="mt-1 text-2xl font-extrabold">{getService(f.service).price}</p>
+              <p className="text-xs font-bold text-midnight/60">Delivery: {getService(f.service).delivery}</p>
+              <ul className="mt-4 space-y-1.5 text-sm font-medium">
+                {getService(f.service).includes.map((i) => <li key={i}>✓ {i}</li>)}
+              </ul>
+            </>
+          ) : (
+            <p className="mt-2 font-semibold text-midnight/70">Choose a service to see what's included.</p>
+          )}
+        </div>
+        <div className="card">
+          <h3 className="font-extrabold">What happens next?</h3>
+          <ol className="mt-3 space-y-2 text-sm font-medium text-midnight/75">
+            <li>1️⃣ You send the message on WhatsApp</li>
+            <li>2️⃣ I confirm scope, price & delivery</li>
+            <li>3️⃣ You pay — {SITE.paymentNote.split(' — ')[0]}</li>
+            <li>4️⃣ I deliver your files privately</li>
+          </ol>
+        </div>
+      </aside>
+      </div>
     </div>
   )
 }

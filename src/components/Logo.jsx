@@ -1,9 +1,9 @@
-export function LogoMark({ className = 'h-9 w-9' }) {
+export function LogoMark({ className = 'h-10 w-10' }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
-      <rect width="64" height="64" rx="16" fill="#111827" />
-      <path d="M42 24a13 13 0 1 0 0 16" fill="none" stroke="#A7F3D0" strokeWidth="6" strokeLinecap="round" />
-      <circle cx="46" cy="21" r="4" fill="#A7F3D0" />
+    <svg viewBox="0 0 64 64" className={`${className} flex-none`} aria-hidden="true">
+      <rect x="2" y="2" width="60" height="60" rx="16" fill="#A7F3D0" stroke="#111827" strokeWidth="4" />
+      <path d="M41 24a13 13 0 1 0 0 16" fill="none" stroke="#111827" strokeWidth="6" strokeLinecap="round" />
+      <circle cx="46" cy="21" r="4" fill="#111827" />
     </svg>
   )
 }

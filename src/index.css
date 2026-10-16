@@ -16,3 +16,10 @@ body { @apply bg-cloud text-midnight antialiased font-sans; }
   .input { @apply w-full rounded-xl border border-midnight/15 bg-white px-4 py-3 text-base outline-none sm:text-sm transition focus:border-mint-dark focus:ring-4 focus:ring-mint/50; }
   .eyebrow { @apply text-xs font-bold uppercase tracking-widest text-mint-dark; }
 }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.page-in { animation: pageIn .35s ease-out both; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .page-in { animation: none; } html { scroll-behavior: auto; } }
+body { -webkit-tap-highlight-color: transparent; }

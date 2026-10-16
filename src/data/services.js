@@ -1,0 +1,69 @@
+// Prices are launch/test prices — change freely.
+export const SERVICES = [
+  {
+    id: 'fresher-resume',
+    emoji: '🎓',
+    name: 'Fresher Resume Creation',
+    price: '₹199 – ₹299',
+    delivery: '1–2 days',
+    blurb: 'A clean, ATS-friendly resume built from scratch from your details.',
+    includes: [
+      'Original resume written from your details',
+      'Projects, skills & education presented clearly',
+      'ATS-friendly, single-column layout',
+      'PDF + editable DOCX',
+      '1 round of revisions',
+    ],
+    for: 'Final-year students & recent graduates',
+  },
+  {
+    id: 'experienced-resume',
+    emoji: '💼',
+    name: 'Experienced Resume Update',
+    price: '₹299 – ₹499',
+    delivery: '1–3 days',
+    blurb: 'Your existing resume, sharpened — stronger bullets, clearer achievements.',
+    includes: [
+      'Experience bullets rewritten with impact',
+      'Achievements & metrics highlighted',
+      'Missing sections identified',
+      'ATS-friendly formatting',
+      'PDF + editable DOCX, 1 round of revisions',
+    ],
+    for: '1+ years of experience, switching or growing',
+  },
+  {
+    id: 'interview-kit',
+    emoji: '🎯',
+    name: 'Interview Preparation Kit',
+    price: '₹99 – ₹199',
+    delivery: '1–2 days',
+    blurb: 'Role, skill & company focused questions with explanations and HR prep.',
+    includes: [
+      'Curated technical questions for your role/skills',
+      'Short explanations & answer pointers',
+      'HR & behavioural questions',
+      'Project-based question prompts',
+      'Quick 7-day revision plan',
+    ],
+    for: 'Anyone with an interview coming up',
+  },
+  {
+    id: 'combo',
+    emoji: '🚀',
+    name: 'Resume + Interview Combo',
+    price: '₹399 – ₹599',
+    delivery: '2–4 days',
+    blurb: 'Resume creation/update plus a role-specific interview kit — best value.',
+    includes: [
+      'Everything in the Resume service you pick',
+      'Everything in the Interview Kit',
+      'Resume and kit aligned to the same target role',
+      'Priority on WhatsApp',
+    ],
+    for: 'Job hunters who want the full package',
+    popular: true,
+  },
+]
+
+export const getService = (id) => SERVICES.find((s) => s.id === id)

@@ -10,9 +10,9 @@ const POLICY = [
 
 export default function Services() {
   return (
-    <div className="container-x py-14">
+    <div className="container-x py-10 sm:py-14">
       <p className="eyebrow">Services & Pricing</p>
-      <h1 className="mt-2 text-4xl font-extrabold">Pick what you need</h1>
+      <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Pick what you need</h1>
       <p className="mt-3 max-w-2xl text-midnight/70">
         These are launch prices. The exact price depends on how much work your profile needs — I confirm it before you pay.
       </p>

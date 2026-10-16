@@ -11,9 +11,9 @@ const SECTIONS = [
 
 export default function Privacy() {
   return (
-    <div className="container-x max-w-3xl py-14">
+    <div className="container-x max-w-3xl py-10 sm:py-14">
       <p className="eyebrow">Privacy</p>
-      <h1 className="mt-2 text-4xl font-extrabold">Your resume is personal. Treated that way.</h1>
+      <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Your resume is personal. Treated that way.</h1>
       <div className="mt-8 space-y-4">
         {SECTIONS.map(([t, d]) => (
           <div key={t} className="card !p-5">

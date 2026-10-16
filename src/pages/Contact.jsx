@@ -7,9 +7,9 @@ export default function Contact() {
     ['📸', 'Instagram', `@${SITE.instagram}`, `https://instagram.com/${SITE.instagram}`, 'Career tips, resume fixes and reels.'],
   ]
   return (
-    <div className="container-x py-14">
+    <div className="container-x py-10 sm:py-14">
       <p className="eyebrow">Contact</p>
-      <h1 className="mt-2 text-4xl font-extrabold">Let's talk</h1>
+      <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Let's talk</h1>
       <p className="mt-3 max-w-xl text-midnight/70">
         Questions before ordering? Not sure which service fits? Message me — no pressure.
       </p>

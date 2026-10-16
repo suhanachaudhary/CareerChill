@@ -114,9 +114,9 @@ export default function Order() {
   }
 
   return (
-    <div className="container-x max-w-3xl py-14">
+    <div className="container-x max-w-3xl py-10 sm:py-14">
       <p className="eyebrow">Order request</p>
-      <h1 className="mt-2 text-4xl font-extrabold">Tell me what you need</h1>
+      <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Tell me what you need</h1>
       <p className="mt-3 text-midnight/70">
         Takes 2 minutes. This form doesn't store anything — it prepares a message you send on WhatsApp or email.
       </p>
@@ -205,7 +205,7 @@ export default function Order() {
         </label>
         <Err k="consent" />
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <button type="submit" className="btn-mint">Send on WhatsApp</button>
           <button type="button" className="btn-primary" onClick={submit('mail')}>Send by email</button>
           <button type="button" className="btn-ghost" onClick={copy}>{copied ? 'Copied ✓' : 'Copy message'}</button>

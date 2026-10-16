@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
+import MobileBar from './components/MobileBar'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Order from './pages/Order'
@@ -36,6 +37,7 @@ export default function App() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <MobileBar />
     </div>
   )
 }

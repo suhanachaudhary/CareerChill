@@ -4,7 +4,7 @@ import { SITE, waLink } from '../config'
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-midnight text-white/80">
+    <footer className="mt-20 bg-midnight pb-20 text-white/80 md:pb-0">
       <div className="container-x grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <Logo light />

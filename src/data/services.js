@@ -1,10 +1,9 @@
 // Prices are launch/test prices — change freely.
-// `tone` = card colour (Tailwind bg class) used across the site.
+// `icon` = name from components/Icon.jsx
 export const SERVICES = [
   {
     id: 'fresher-resume',
-    emoji: '🎓',
-    tone: 'bg-mint',
+    icon: 'file',
     name: 'Fresher Resume Creation',
     short: 'Fresher Resume',
     price: '₹199 – ₹299',
@@ -22,8 +21,7 @@ export const SERVICES = [
   },
   {
     id: 'experienced-resume',
-    emoji: '💼',
-    tone: 'bg-butter',
+    icon: 'briefcase',
     name: 'Experienced Resume Update',
     short: 'Experienced Update',
     price: '₹299 – ₹499',
@@ -41,8 +39,7 @@ export const SERVICES = [
   },
   {
     id: 'interview-kit',
-    emoji: '🎯',
-    tone: 'bg-lilac',
+    icon: 'target',
     name: 'Interview Preparation Kit',
     short: 'Interview Kit',
     price: '₹99 – ₹199',
@@ -60,8 +57,7 @@ export const SERVICES = [
   },
   {
     id: 'combo',
-    emoji: '🚀',
-    tone: 'bg-peach',
+    icon: 'layers',
     name: 'Resume + Interview Combo',
     short: 'Resume + Kit Combo',
     price: '₹399 – ₹599',

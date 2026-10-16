@@ -1,4 +1,5 @@
 import { waLink } from '../config'
+import Icon from './Icon'
 
 export default function WhatsAppFloat() {
   return (
@@ -7,12 +8,9 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="btn fixed bottom-6 right-6 z-50 hidden bg-[#25D366] text-midnight md:inline-flex"
+      className="fixed bottom-6 right-6 z-50 hidden items-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-lift transition hover:bg-emerald-700 md:inline-flex"
     >
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-3-1.2-4.9-4.2-5.1-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.8-.1 1.4Z" />
-      </svg>
-      Chat with us
+      <Icon name="chat" className="h-5 w-5" /> Chat with us
     </a>
   )
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHead from '../components/PageHead'
+import Icon from '../components/Icon'
 import { SERVICES, getService } from '../data/services'
 import { SITE, waLink, mailLink } from '../config'
 
@@ -93,15 +94,15 @@ export default function Order() {
     }
   }
 
-  const Err = ({ k }) => (errors[k] ? <p className="mt-1 text-xs font-semibold text-red-600" data-error="true">{errors[k]}</p> : null)
-  const cls = (k) => `input ${errors[k] ? '!border-red-500' : ''}`
+  const Err = ({ k }) => (errors[k] ? <p className="mt-1 text-xs font-medium text-red-600" data-error="true">{errors[k]}</p> : null)
+  const cls = (k) => `input ${errors[k] ? '!border-red-500 focus:!ring-red-500/10' : ''}`
 
   if (sent) {
     return (
       <div className="container-x max-w-2xl py-16 text-center md:py-24">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-midnight bg-butter text-5xl shadow-pop">🎉</div>
-        <h1 className="mt-4 text-3xl font-extrabold">Request ready — just hit send!</h1>
-        <p className="mt-3 font-medium text-midnight/70">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600"><Icon name="check" className="h-8 w-8" strokeWidth={2.4} /></div>
+        <h1 className="mt-5 text-3xl font-bold tracking-tight">Request ready — just hit send</h1>
+        <p className="mt-3 text-slate-600">
           Your message opened in WhatsApp / your mail app. Press <strong>Send</strong> there to complete the request. I will reply with
           scope, price and delivery time. {SITE.paymentNote}
         </p>
@@ -118,27 +119,25 @@ export default function Order() {
     <div className="container-x pt-6 md:pt-10">
       <PageHead
         eyebrow="Order request"
-        title="Tell me what you need."
+        title="Place an order"
         sub="Takes 2 minutes. This form doesn't store anything — it prepares a message you send on WhatsApp or email."
-        emoji="📝"
-        tone="bg-mint"
       />
 
       <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_24rem]">
       <form className="card space-y-6 !p-5 sm:!p-8" noValidate onSubmit={submit('wa')}>
         <div>
-          <span className="label">1. Choose a service</span>
+          <span className="label">Service</span>
           <div className="grid gap-3 sm:grid-cols-2">
             {SERVICES.map((s) => (
               <label
                 key={s.id}
-                className={`cursor-pointer rounded-2xl border-2 border-midnight p-4 transition ${
-                  f.service === s.id ? `${s.tone} shadow-pop-sm` : 'bg-white hover:bg-midnight/5'
+                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition ${
+                  f.service === s.id ? 'border-emerald-600 bg-emerald-50/60 ring-1 ring-emerald-600' : 'border-slate-200 bg-white hover:border-slate-300'
                 }`}
               >
                 <input type="radio" name="service" className="sr-only" checked={f.service === s.id} onChange={() => { setF((p) => ({ ...p, service: s.id })); setErrors((p) => ({ ...p, service: undefined })) }} />
-                <div className="font-extrabold">{s.emoji} {s.name}</div>
-                <div className="text-sm font-semibold text-midnight/65">{s.price}</div>
+                <span className="icon-tile !h-9 !w-9"><Icon name={s.icon} className="h-[18px] w-[18px]" /></span>
+                <span><span className="block text-sm font-semibold">{s.name}</span><span className="text-sm text-slate-500">{s.price}</span></span>
               </label>
             ))}
           </div>
@@ -195,15 +194,15 @@ export default function Order() {
           <textarea id="notes" rows={3} className="input" value={f.notes} onChange={set('notes')} placeholder="Projects, achievements, job link, special requests…" />
         </div>
 
-        <div className="rounded-2xl border-2 border-dashed border-midnight bg-butter/60 p-4 text-sm font-medium">
-          📎 {needsResume ? <strong>Your existing resume is needed.</strong> : 'If you have an existing resume,'} send the file on WhatsApp / email after this
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+          <Icon name="file" className="mr-1.5 inline h-4 w-4 align-text-bottom" />{needsResume ? <strong>Your existing resume is needed.</strong> : 'If you have an existing resume,'} send the file on WhatsApp / email after this
           message. Files are never uploaded to this website.
         </div>
 
         <label className="flex items-start gap-3 text-sm">
-          <input type="checkbox" className="mt-1 h-5 w-5 accent-emerald-600" checked={f.consent} onChange={set('consent')} />
+          <input type="checkbox" className="mt-0.5 h-4 w-4 accent-emerald-600" checked={f.consent} onChange={set('consent')} />
           <span>
-            I understand work starts after payment is confirmed, and I agree to the <Link to="/privacy" className="font-bold underline">privacy policy</Link>. ATS-friendly and
+            I understand work starts after payment is confirmed, and I agree to the <Link to="/privacy" className="font-semibold underline">privacy policy</Link>. ATS-friendly and
             interview kits do not guarantee shortlisting or specific questions.
           </span>
         </label>
@@ -216,29 +215,30 @@ export default function Order() {
         </div>
       </form>
 
-      <aside className="space-y-5 lg:sticky lg:top-28">
-        <div className={`card ${getService(f.service)?.tone || '!bg-white'}`}>
-          <p className="text-xs font-extrabold uppercase tracking-wider text-midnight/60">Your pick</p>
+      <aside className="space-y-5 lg:sticky lg:top-24">
+        <div className="card">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Order summary</p>
           {getService(f.service) ? (
             <>
-              <h3 className="mt-2 text-xl font-extrabold">{getService(f.service).emoji} {getService(f.service).name}</h3>
-              <p className="mt-1 text-2xl font-extrabold">{getService(f.service).price}</p>
-              <p className="text-xs font-bold text-midnight/60">Delivery: {getService(f.service).delivery}</p>
-              <ul className="mt-4 space-y-1.5 text-sm font-medium">
-                {getService(f.service).includes.map((i) => <li key={i}>✓ {i}</li>)}
+              <h3 className="mt-3 text-lg font-semibold">{getService(f.service).name}</h3>
+              <p className="mt-1 text-2xl font-bold tracking-tight">{getService(f.service).price}</p>
+              <p className="text-xs text-slate-500">Delivery: {getService(f.service).delivery}</p>
+              <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4 text-sm text-slate-700">
+                {getService(f.service).includes.map((i) => (
+                  <li key={i} className="flex gap-2"><Icon name="check" className="mt-0.5 h-4 w-4 flex-none text-emerald-600" strokeWidth={2.4} />{i}</li>
+                ))}
               </ul>
             </>
           ) : (
-            <p className="mt-2 font-semibold text-midnight/70">Choose a service to see what's included.</p>
+            <p className="mt-3 text-sm text-slate-500">Choose a service to see what's included.</p>
           )}
         </div>
         <div className="card">
-          <h3 className="font-extrabold">What happens next?</h3>
-          <ol className="mt-3 space-y-2 text-sm font-medium text-midnight/75">
-            <li>1️⃣ You send the message on WhatsApp</li>
-            <li>2️⃣ I confirm scope, price & delivery</li>
-            <li>3️⃣ You pay — {SITE.paymentNote.split(' — ')[0]}</li>
-            <li>4️⃣ I deliver your files privately</li>
+          <h3 className="font-semibold">What happens next</h3>
+          <ol className="mt-3 space-y-2.5 text-sm text-slate-600">
+            {['You send the message on WhatsApp', 'I confirm scope, price & delivery', `You pay — ${SITE.paymentNote.split(' — ')[0]}`, 'I deliver your files privately'].map((t, i) => (
+              <li key={t} className="flex gap-3"><span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-slate-900 text-[11px] font-semibold text-white">{i + 1}</span>{t}</li>
+            ))}
           </ol>
         </div>
       </aside>

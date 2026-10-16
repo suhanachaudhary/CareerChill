@@ -27,3 +27,6 @@ Connect the repo → build command `npm run build` → output directory `dist`. 
 
 ## Reminders
 Check domain, Instagram handle and IP India trademark availability for "CareerChill" before investing in branding.
+
+## Ad reel
+`marketing/reel/careerchill-ad.mp4` (1080x1920, 24s, no audio — add trending audio in Instagram). Source: `ad-reel.html`; re-record with `record.mjs`.

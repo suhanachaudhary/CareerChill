@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({ plugins: [react()] })
+// Served at https://<user>.github.io/CareerChill/ on GitHub Pages.
+export default defineConfig({ base: '/CareerChill/', plugins: [react()] })

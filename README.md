@@ -11,11 +11,14 @@ React + Vite + Tailwind. No backend: the Order page builds a message and opens W
 ## Run
 ```
 npm install
-npm run dev      # http://localhost:5173
+npm run dev      # http://localhost:5173/CareerChill/
 npm run build    # output in dist/
 ```
 
-## Deploy free (Cloudflare Pages)
+## Deploy (GitHub Pages, free) — live at https://suhanachaudhary.github.io/CareerChill/
+Push to `main` runs `.github/workflows/deploy.yml`. If the first run fails, set Settings → Pages → Source = GitHub Actions and re-run.
+
+### Alternative: Cloudflare Pages (set `base` to `/` in vite.config.js)
 Connect the repo → build command `npm run build` → output directory `dist`. `public/_redirects` handles SPA routes.
 (Vercel Hobby is non-commercial only — avoid it for a paid service.)
 
